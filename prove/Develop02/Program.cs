@@ -14,9 +14,15 @@ class Program
             _prompt.Promtps.Add("What three important things have you learned from previous relationships?");
         Entry _entry = new Entry();
 
+        string _text = "";
+        _entry._entry = _text;
+        
         Journal _createJournal = new Journal();
+        string _fileSaved = "";
+        _createJournal._fileName = _fileSaved;
         while (_enter != 5) {
         System.Console.WriteLine("");
+        
         _start.DisplayMenu();
         _enter = _start.OpenJournal();
         switch (_enter)
@@ -28,9 +34,7 @@ class Program
                 string _write = _prompt.GenertatePrompt();
 
                 _entry.theCurrentTime = DateTime.Now; 
-                string _text = _entry.WriteEntry(_write);
-                string _fileSaved = _createJournal.Save(_text);
-                _createJournal._fileName = _fileSaved;
+                _text = _entry.WriteEntry(_write);
                 
 
                 
@@ -38,12 +42,16 @@ class Program
             case 2:
                 // string _fileContent = _createJournal.Display(_fileSaved);
                 
+                _entry.DisplayEntry(_text);
                 ;
                 break;
             case 3:
+                string _loadFile = _createJournal.Load(_fileSaved, _text);
                 ;
                 break;
             case 4:
+                _fileSaved = _createJournal.Save(_text);
+                _createJournal._fileName = _fileSaved;
                 ;
                 break;
             

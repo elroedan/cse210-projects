@@ -15,5 +15,11 @@ public class Entry
     return $"{dateText}, {_entry}"; 
   }
 
+  public void DisplayEntry(string text) {
+
+    System.Console.WriteLine(text);
+
+  }
+
 
 }
