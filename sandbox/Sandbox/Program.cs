@@ -1,5 +1,5 @@
 using System;
-
+using System.Threading;
 
 // Shopping cart program 
 /* 
@@ -13,13 +13,28 @@ class Program
 {
     static void Main(string[] args)
     {
-        
-        List<string> items = new List<string>();
-        List<float> prices = new List<float>();
+         string text = "Hello, world!";
+        int delay = 500;
+        bool visible = true;
 
-        bool done = false;
-        while (!done)
+        while (true)
         {
+            Console.Clear();
+
+            if (visible)
+            {
+                Console.WriteLine(text);
+                visible = false;
+            }
+            else
+            {
+                visible = true;
+            }
+
+            Thread.Sleep(delay);
+        }
+    }
+}
             /*
 switch(expression) 
 {
@@ -49,70 +64,69 @@ switch(expression)
                     break;
             }
             */
-            Displaymenu();
-            int choice = GetChoice();
+    //         Displaymenu();
+    //         int choice = GetChoice();
 
-            if (choice == 1)
-            {
-                AddItem(items, prices);
-            }
+    //         if (choice == 1)
+    //         {
+    //             AddItem(items, prices);
+    //         }
 
-            else if (choice == 2)
-            {
-                Diplay(items, prices);
-            }
+    //         else if (choice == 2)
+    //         {
+    //             Diplay(items, prices);
+    //         }
 
-            else if (choice == 3)
-            {
+    //         else if (choice == 3)
+    //         {
                 
-            }
-            else if (choice == 4)
-            {
+    //         }
+    //         else if (choice == 4)
+    //         {
 
-            }
-            else if (choice == 5)
-            {
-                done = true;
-            }
+    //         }
+    //         else if (choice == 5)
+    //         {
+    //             done = true;
+    //         }
 
-        }
+    //     }
 
-    }
-    static void Displaymenu()
-    {
-        System.Console.WriteLine("1) Add item");
-        System.Console.WriteLine("2) Display");
-        System.Console.WriteLine("3) Total");
-        System.Console.WriteLine("4) Remove");
-        System.Console.WriteLine("5) Quit");
-    }
+    // }
+    // static void Displaymenu()
+    // {
+    //     System.Console.WriteLine("1) Add item");
+    //     System.Console.WriteLine("2) Display");
+    //     System.Console.WriteLine("3) Total");
+    //     System.Console.WriteLine("4) Remove");
+    //     System.Console.WriteLine("5) Quit");
+    // }
 
-    static int GetChoice()
-    {
-        System.Console.WriteLine("Enter Choice: ");
-        string choice = Console.ReadLine();
-        int answer = int.Parse(choice);
-        return answer;
-    }
+    // static int GetChoice()
+    // {
+    //     System.Console.WriteLine("Enter Choice: ");
+    //     string choice = Console.ReadLine();
+    //     int answer = int.Parse(choice);
+    //     return answer;
+    // }
 
-    static void AddItem(List<string> items, List<float> prices)
-    {
-        System.Console.Write("Enter item: ");
-        string item = Console.ReadLine();
+    // static void AddItem(List<string> items, List<float> prices)
+    // {
+    //     System.Console.Write("Enter item: ");
+    //     string item = Console.ReadLine();
 
-        System.Console.Write("Enter price: ");
-        string amount = Console.ReadLine();
-        float price = float.Parse(amount);
+    //     System.Console.Write("Enter price: ");
+    //     string amount = Console.ReadLine();
+    //     float price = float.Parse(amount);
 
-        items.Add(item);
-        prices.Add(price);
-    }
-    static void Diplay(List<string> items, List<float> prices)
-    {
-        for (int i = 0; i < items.Count; i ++)
-        {
-            System.Console.WriteLine($"{items[i]}: {prices[i]}");
-        }
-        System.Console.WriteLine("");
-    }
-}
+    //     items.Add(item);
+    //     prices.Add(price);
+    // }
+    // static void Diplay(List<string> items, List<float> prices)
+    // {
+    //     for (int i = 0; i < items.Count; i ++)
+    //     {
+    //         System.Console.WriteLine($"{items[i]}: {prices[i]}");
+    //     }
+    //     System.Console.WriteLine("");
+    

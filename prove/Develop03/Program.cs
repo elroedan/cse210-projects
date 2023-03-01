@@ -18,7 +18,7 @@ class Program
         string start= " ";
         while (start.ToLower() != "quit"){
             
-            Console.Write("Please press Enter to continue or typ \"Quit\" to finish ");
+            Console.Write("Please press Enter to continue or typ \"Quit\" to finish. ");
             start = Console.ReadLine();
 
             scrip.HideWords(3);

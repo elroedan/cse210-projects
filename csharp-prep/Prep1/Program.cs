@@ -4,12 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("What is your name? ");
-        string first_name = Console.ReadLine();
+        Book book1 = new Book();
+        book1.SetAuthor("Elroe");
+        book1.SetTitle("A Great book");
 
-        System.Console.WriteLine("What is your last name? ");
-        string last_name = Console.ReadLine();
-
-        System.Console.WriteLine($"Your name is: {last_name}, {first_name}");
+        string info = book1.GetBookInfo();
+        System.Console.WriteLine(info);
     }
 }
