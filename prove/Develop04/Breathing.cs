@@ -17,6 +17,7 @@ public class Breathing : Activity{
     {
         StartingMessage();
         int duration = GetTime();
+        
         Console.Clear();
         GetReady();
         
