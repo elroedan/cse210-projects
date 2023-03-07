@@ -29,17 +29,11 @@ class Program
         Square square = new Square(27);
         Rectangle rectangle = new Rectangle(7, 9);
         Circle circle = new Circle(9);
-        // rectangle.SetColor("Blue");
-        // square.SetColor("Red");
-
-        System.Console.WriteLine();
-        // DisplayShapeInformation(rectangle);
-        // DisplayShapeInformation(square);
-        // DisplayShapeInformation(circle);
+    
         List<Shape> shapes = new List<Shape>();
         shapes.Add(square);
         shapes.Add(circle);
-        shapes.Add(rectangle);
+        shapes.Add(rectangle); 
 
         foreach (Shape shape in shapes)
         {
