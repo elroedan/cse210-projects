@@ -3,9 +3,16 @@
 
 public abstract class Goal{
 
-    int _point;
-    string _title;
-    string _description;
+    private int _point = 0;
+    private string _title;
+    private string _description;
+    private bool _completed = false;
+
+    List<string> _goals = new List<string>();
+
+/* This list is created to have 
+ less console.writeline in the displaystartingMenu
+*/
 
 
     public Goal(string title, string description, int point)
@@ -15,24 +22,33 @@ public abstract class Goal{
         _point = point;
     }
 
-    public void SetInformation()
-    {
-        System.Console.Write("What is the name of your goal? ");
-        string title = Console.ReadLine();
-        System.Console.Write("What is a short description of it? ");
-        string description = Console.ReadLine();
-        System.Console.WriteLine("What is the amount of points associated with this goal? ");
-        string number = Console.ReadLine();
-        int point = int.Parse(number);
+    public abstract void SetInformation(string stringRep);
 
-        _title = title;
-        _description = description; 
-        _point = point;
-    }
+
+// This function gets informations from user and sets the variables
 
     public string GetTitle()
     {
         return _title;
+    }
+
+    public bool GetCompleted()
+    {
+        return _completed;
+    }
+
+    public void SetCompleted(bool completed)
+    {
+        _completed = completed;
+    }
+  
+    public void SetDescription(string description)
+    {
+        _description = description;
+    }
+    public void SetTitle(string title)
+    {
+        _title = title;
     }
 
     public string GetDescription()
@@ -41,18 +57,59 @@ public abstract class Goal{
     }
 
     public int GetPoint()
-    {
+    { 
         return _point;
     }
 
     public void SetPoint(int point)
     {
-        _point += point;
+        _point = point;
     }
 
-    public abstract string  GetInformation();
+    public abstract bool GetFinished();
+
+    public virtual void SetInformation()
+    {
+        // title|desc|proint
+        System.Console.Write("What is the name of your goal? ");
+        string title = Console.ReadLine();
+        System.Console.Write("What is a short description of it? ");
+        string description = Console.ReadLine();
+        System.Console.Write("What is the amount of points associated with this goal? ");
+        string number = Console.ReadLine();
+        int point = int.Parse(number);
+
+        _title = title;
+        _description = description; 
+        _point = point;
+    }
+
+
+    /*
+    This function is supposed to return the title, desc, point
+     
+    */
+    public abstract string  GetInformationSaved();
+    public virtual string DisplayInformation()
+    {
+        string title = GetTitle();
+        string description = GetDescription();
+
+        // int point = GetPoint();
+        if (_completed == false)
+        {
+            return $" [] {title} ({description}) ";
+        }
+        else
+        {
+            return $" [X] {title} ({description}) ";
+        }
+    }
+   
+    public abstract string DisplayGoals();
+    
     
 
-    public abstract string Save();
+    
     
 }

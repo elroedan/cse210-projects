@@ -1,36 +1,57 @@
 public class EternalGoal : Goal
-{
+{   
+    
     public EternalGoal() : base("Eternal", "N/A", 0)
     {
 
     }
+    public void SetDataForLoad(string title, string description, int point)
+    {
+        SetTitle(title);
+        SetDescription(description);
+        SetPoint(point);
+        
+    }
 
-    public override string GetInformation()
+    /*
+        This method Gets information and returns it in 
+        a string format (Might help when saving and loading file)
+    */
+    public override string GetInformationSaved()
     {
         string title = GetTitle();
         string description = GetDescription();
         int point = GetPoint();
 
-        return $"{title} : {point} | {description} ";
+        return $"Eternal:{title}|{point}|{description} ";
         
     
     }
-    public override string Save()
+
+    public override bool GetFinished()
     {
-        string data = GetInformation();
-        System.Console.WriteLine("Enter name of the file (Entry1.txt): ");
-        string _fileName = System.Console.ReadLine();
+        throw new NotImplementedException();
+    }
+    public override void SetInformation(string stringRep)
+    {
+           string[] parts = stringRep.Split("|");
+           string title = parts[0];
+           string pointString = parts[1];
+           int point = int.Parse(pointString);
+           string description = parts[2];
+
+           SetTitle(title);
+           SetDescription(description);
+           SetPoint(point);
+    }
+    public override string DisplayInformation()
+    {
+        return base.DisplayInformation();
+    }
 
 
-        using (StreamWriter writer = new StreamWriter(_fileName))
-        {
-            writer.WriteLine(data);
-        } 
-        
-        string _fileWritten = ("The entry has been written to the file.");
-        System.Console.WriteLine(_fileWritten);
-        return _fileName;
-        
-
+    public override string DisplayGoals()
+    {
+        return GetTitle();
     }
 }
