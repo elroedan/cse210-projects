@@ -37,13 +37,30 @@ public class SimpleGoal : Goal
 
     public override bool GetFinished()
     {
-        throw new NotImplementedException();
+        if (GetCompleted() == true)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
     public override string DisplayGoals()
     {
         return GetTitle();
     }
+
+    public override int GivePoint()
+    {
+        SetCompleted(true);  
+        return base.GivePoint();
+    }
+    
+    
 
    
 }

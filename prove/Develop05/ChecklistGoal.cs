@@ -4,6 +4,7 @@ public class ChecklistGoal : Goal
 {
     int _numberOfTimes;
     int _bonusPoints = 0;
+    int _countCheckedNumber = 0;
 
     public ChecklistGoal() : base("CheckList", "N/A", 0)
     {
@@ -15,6 +16,14 @@ public class ChecklistGoal : Goal
         return _numberOfTimes;
     }
 
+    public void SetCountCheckedNumber()
+    {
+        _countCheckedNumber += 1;
+    }
+    public int GetCountCheckedNumber()
+    {
+        return _countCheckedNumber;
+    }
     public int GetBonusPoints()
     {
         return _bonusPoints;
@@ -40,11 +49,11 @@ public class ChecklistGoal : Goal
         System.Console.Write("What is the amount of points associated with this goal? ");
         string pointString = Console.ReadLine();
         int point = int.Parse(pointString);
-        System.Console.WriteLine("How many times does this goal need to be accomplished for a bonus? ");
+        System.Console.Write("How many times does this goal need to be accomplished for a bonus? ");
         string number = Console.ReadLine();
         int numberOfTimes = int.Parse(number);
 
-        System.Console.WriteLine("What is the bonus for accomplishing it that many times? ");
+        System.Console.Write("What is the bonus for accomplishing it that many times? ");
         string many = Console.ReadLine();
         int bonus = int.Parse(many);
 
@@ -93,12 +102,31 @@ public class ChecklistGoal : Goal
         string description = GetDescription();
         // int point = GetPoint();
 
-        return $" [] {title} ({description}) -- currently completed: /{_numberOfTimes} ";
+        if (GetFinished() == false)
+        {
+
+            return $" [] {title} ({description}) -- currently completed: {GetCountCheckedNumber()}/{GetnumberOfTimes()} ";
+            
+        }
+        else
+        {
+            return $" [X] {title} ({description}) -- currently completed: {GetCountCheckedNumber()}/{GetnumberOfTimes()} ";
+
+        }
     }
 
     public override bool GetFinished()
     {
-        throw new NotImplementedException();
+        if (GetCountCheckedNumber() == GetnumberOfTimes())
+        {
+            return true;
+        }
+        
+        else
+        {
+            return false;
+        }
+        
     }
 
     public override string DisplayGoals()
@@ -106,4 +134,15 @@ public class ChecklistGoal : Goal
         return GetTitle();
     }
 
+    public override int GivePoint()
+    {
+        SetCountCheckedNumber();
+        if (GetCountCheckedNumber() == GetnumberOfTimes())
+        {
+            GetFinished();
+            return GetBonusPoints();
+        }
+        
+        return base.GivePoint();
+    }
 }

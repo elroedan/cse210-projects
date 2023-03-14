@@ -68,6 +68,16 @@ public abstract class Goal{
 
     public abstract bool GetFinished();
 
+    public virtual int GivePoint()
+    {
+     
+     
+        System.Console.WriteLine($"Congratulations! you have earned {GetPoint()} ");
+        return GetPoint();
+       
+
+    }
+
     public virtual void SetInformation()
     {
         // title|desc|proint
@@ -96,7 +106,7 @@ public abstract class Goal{
         string description = GetDescription();
 
         // int point = GetPoint();
-        if (_completed == false)
+        if (GetFinished() == false)
         {
             return $" [] {title} ({description}) ";
         }
@@ -107,9 +117,7 @@ public abstract class Goal{
     }
    
     public abstract string DisplayGoals();
-    
-    
-
+   
     
     
 }

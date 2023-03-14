@@ -1,26 +1,15 @@
 using System;
-
-// create seperate method for setting and getting the info. 
-// use a for loop in the program to calculate the points. (Ask each goal there total points)
-// when you create a goal add to the list. 
-// when loading clearList to make space for the uplcoming file. 
-
-
 class Program
 {
-    // private void AddtoList(Goal goal)
-    // {
-    //     _goals.Add(goal);
-    // }
     static void Main(string[] args)
     {
         List<Goal> _goals = new List<Goal>();
-        
-        
-
+        int _totalPoint = 0;
+    
         int choice = -1;
         while (choice !=6)
         {
+        System.Console.WriteLine($"You have {GetTotalPoint()} points.");
         choice = DisplayStartingMenu();
 
         switch (choice)
@@ -70,11 +59,27 @@ class Program
             case 5:
 
                 int accomplishedGoal = DisplayGoalFromRecord(_goals);
+                Goal completedGoal = _goals[accomplishedGoal-1];
+                completedGoal.GetFinished();
+                int pointGained = completedGoal.GivePoint();
+                SetTotalPoint(pointGained);
 
+                System.Console.WriteLine($"You now have {GetTotalPoint()} points.");
+                System.Console.WriteLine();
                 
                 break;
                 
         }
+    }
+
+    void SetTotalPoint(int addPoint)
+    {
+        _totalPoint += addPoint;
+    }
+
+    int GetTotalPoint()
+    {
+        return _totalPoint;
     }
     int DisplayStartingMenu()
     {
@@ -86,15 +91,18 @@ class Program
         
         System.Console.WriteLine();
         System.Console.WriteLine("Menu Options:");
+
         for (int i = 0; i < StartingMenu.Count; i++){
             System.Console.WriteLine($" {i+1}. {StartingMenu[i]}");
         }
+
         System.Console.Write("Select a choice from the Menu: ");
         string choose = Console.ReadLine();
         int choice = int.Parse(choose);
 
         return choice;
     }
+
     void Load(string fileName, List<Goal> goals)
     
     {
@@ -127,48 +135,30 @@ class Program
             }
             
         }  
-        
-            // while loop in a  txt file 
-            // then
-            /*
-            have it splitted by the type then add it to the goal 
-            before adding have conditions to check which goal it is then create the goal and add to the list.
-            search how to clear a list. clear the list then recreate thungs like menttioned above.
-            */            
-
-
-            // string title = parts[1];
-            // int point = Int32.Parse(parts[2]);
-            // string description = parts[3];
     }
+
     string GetFileName()
     {
-        System.Console.WriteLine("What is the file name? (include the .txt)"); 
+        System.Console.Write("What is the file name? (Entry1.txt)"); 
         string fileName = Console.ReadLine();
         return fileName;
     }
-    string Save(List<Goal> goals) 
+
+    void Save(List<Goal> goals) 
     {   
         System.Console.Write("Enter name of the file (Entry1.txt): ");
         string _fileName = System.Console.ReadLine();
-        foreach (Goal goal in goals)
+        using (StreamWriter writer = new StreamWriter(_fileName))
         {
-            string save = goal.GetInformationSaved();
-            using (StreamWriter writer = new StreamWriter(_fileName))
+            //writer.WriteLine(GetTotalPoint());
+            foreach (Goal goal in goals)
             {
-                writer.WriteLine(save);
-            } 
-            // string _fileWritten = ("The entry has been written to the file.");
-            
-        }
-        // System.Console.WriteLine(_fileWritten);
-        
-        
-
-
-        return _fileName;
-
+            string save = goal.GetInformationSaved();
+            writer.WriteLine(save);
+            }             
+        }     
     }
+
     void DisplayGoalInformation(List<Goal> _goals)
     {
 
@@ -180,8 +170,6 @@ class Program
         }
         
     }
-
-    
     
     int DisplayGoalType()
     {
@@ -189,13 +177,13 @@ class Program
         System.Console.WriteLine("  1. Simple Goal");
         System.Console.WriteLine("  2. Eternal Goal");
         System.Console.WriteLine("  3. Checklist Goal");
-        System.Console.WriteLine("Which Type of goal would you like to create? ");
+        System.Console.Write("Which Type of goal would you like to create? ");
         string type = Console.ReadLine();
         int goalType = int.Parse(type);
 
         return goalType;
     }
-    
+
     int DisplayGoalFromRecord(List<Goal> goals)
     {
         System.Console.WriteLine("The goals are: ");
@@ -206,23 +194,15 @@ class Program
             System.Console.WriteLine($" {i+1}. {display}");
 
         }
-        System.Console.WriteLine("Which goals did you accomplished? ");
+        System.Console.Write("Which goals did you accomplished? ");
         string choice = Console.ReadLine();
         int accomplishedGoal = int.Parse(choice);
 
         return accomplishedGoal;
     }
-    }
-    
-        /* 
-    
 
-    I need to know if it needs to be virtual?
-    Also ask about the total point and each goal point 
-    best way to keep track of that ?
+}
 
-*/
-    
 
 }
 

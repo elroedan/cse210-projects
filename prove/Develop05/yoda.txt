@@ -1,0 +1,3 @@
+Simple:eat food | 100 | i just want food right now 
+Eternal:drink water|5|cold water please 
+Checklist:i dont know|6|maybe i know i dont know |3|3

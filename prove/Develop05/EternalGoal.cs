@@ -12,11 +12,6 @@ public class EternalGoal : Goal
         SetPoint(point);
         
     }
-
-    /*
-        This method Gets information and returns it in 
-        a string format (Might help when saving and loading file)
-    */
     public override string GetInformationSaved()
     {
         string title = GetTitle();
@@ -30,7 +25,7 @@ public class EternalGoal : Goal
 
     public override bool GetFinished()
     {
-        throw new NotImplementedException();
+        return false;
     }
     public override void SetInformation(string stringRep)
     {
@@ -53,5 +48,10 @@ public class EternalGoal : Goal
     public override string DisplayGoals()
     {
         return GetTitle();
+    }
+
+    public override int GivePoint()
+    {
+        return base.GivePoint();
     }
 }
