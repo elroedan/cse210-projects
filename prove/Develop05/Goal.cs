@@ -70,11 +70,8 @@ public abstract class Goal{
 
     public virtual int GivePoint()
     {
-     
-     
         System.Console.WriteLine($"Congratulations! you have earned {GetPoint()} ");
         return GetPoint();
-       
 
     }
 

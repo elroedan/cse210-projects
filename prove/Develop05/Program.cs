@@ -109,7 +109,8 @@ class Program
         goals.Clear();
         // Read the file and display it line by line.  
         foreach (string line in System.IO.File.ReadLines(fileName))
-        {  
+        {          
+
             string[] parts = line.Split(":");
             string goalType = parts[0];
             string data = parts[1];
@@ -117,6 +118,9 @@ class Program
             {
                 SimpleGoal simpleGoal = new SimpleGoal();
                 simpleGoal.SetInformation(data);
+                // simpleGoal.GetCompleted();
+                // int pointGained = simpleGoal.GivePoint();
+                // SetTotalPoint(pointGained);
                 goals.Add(simpleGoal);
 
             }
@@ -124,6 +128,9 @@ class Program
             {
                 EternalGoal eternalGoal = new EternalGoal();
                 eternalGoal.SetInformation(data);
+                // eternalGoal.GetCompleted();
+                // int pointGained = eternalGoal.GivePoint();
+                // SetTotalPoint(pointGained);
                 goals.Add(eternalGoal);
             }
             else if (goalType == "Checklist")
@@ -131,6 +138,9 @@ class Program
 
                 Goal checklistGoal = new ChecklistGoal();
                 checklistGoal.SetInformation(data);
+                // checklistGoal.GetCompleted();
+                // int pointGained = checklistGoal.GivePoint();
+                // SetTotalPoint(pointGained);
                 goals.Add(checklistGoal);
             }
             
@@ -150,7 +160,7 @@ class Program
         string _fileName = System.Console.ReadLine();
         using (StreamWriter writer = new StreamWriter(_fileName))
         {
-            //writer.WriteLine(GetTotalPoint());
+            
             foreach (Goal goal in goals)
             {
             string save = goal.GetInformationSaved();
