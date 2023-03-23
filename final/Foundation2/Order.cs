@@ -5,6 +5,7 @@ public class Order
     
     private List<Product> products = new List<Product>();
     private int _shippingCost = 5;
+    private double _tax = 0.6;
 
     public Order ()
     {
@@ -16,6 +17,12 @@ public class Order
         get {return _shippingCost; }
         set {_shippingCost = value; }
     }
+    public double Tax
+    {
+        get {return _tax; }
+        set {_tax = value; }
+    }
+
 
     public double TotalCost(bool getcustomerlocation)
     {
@@ -31,24 +38,26 @@ public class Order
         }
         else{
             ShippingCost = 35;
-            return totalCost +ShippingCost;
+            return (totalCost +ShippingCost) * Tax;
         }
         // Right a condition that calculates total cost with shipping.
     }
 
     public void PackingLabel()
-    {
-        System.Console.WriteLine("Product Name -- ProductId");
+    {   
+        System.Console.WriteLine("Packing Label:");
+        System.Console.WriteLine("     Product Name -- ProductId");
         foreach(Product product in products)
         {
-            System.Console.WriteLine($"{product.ProductName} -- {product.ProductId}");
+            System.Console.WriteLine($"     {product.ProductName} -- {product.ProductId}");
         }
     }
 
     public void ShippingLabel(Customer customer)
     {
-        System.Console.WriteLine($"Customer Name: {customer.CustomerName}  ");
-        System.Console.WriteLine($"{customer.DisplayCustomerAddress} ");
+        System.Console.WriteLine("Shipping Label");
+        System.Console.WriteLine($"     Customer Name: {customer.CustomerName}  ");
+        System.Console.WriteLine($"     {customer.DisplayCustomerAddress} ");
     }
 
     public void DisplayProducts()
@@ -56,19 +65,19 @@ public class Order
         System.Console.WriteLine("Items in list:");
         for(int i = 0; i < products.Count(); i++ )
         {
-            System.Console.WriteLine($"{i+1} {products[i].DisplayProduct}"); 
+            System.Console.WriteLine($"{i+1} {(products[i].DisplayProduct())}"); 
         }
     }
     public void GetProductInfo()
     {
         Product product = new Product();
-        System.Console.WriteLine("Enter product Name: ");
+        System.Console.Write("Enter product Name: ");
         product.ProductName = Console.ReadLine();
-        System.Console.WriteLine($"Enter the product Id for {product.ProductName}: ");
+        System.Console.Write($"Enter the product Id for {product.ProductName}: ");
         product.ProductId = int.Parse(Console.ReadLine());
-        System.Console.WriteLine($"Enter the price for {product.ProductName}: ");
+        System.Console.Write($"Enter the price for {product.ProductName}: ");
         product.Price = double.Parse(Console.ReadLine());
-        System.Console.WriteLine($"How many {product.ProductName} would you like? ");
+        System.Console.Write($"How many {product.ProductName} would you like? ");
         product.Quantity = int.Parse(Console.ReadLine());
 
         products.Add(product);            
@@ -76,10 +85,10 @@ public class Order
 
     public void RemoveProduct()
     {
-        System.Console.WriteLine("Which item would you like to remove? ");
+        System.Console.Write("Which item would you like to remove? ");
         int removingIndex = int.Parse(Console.ReadLine());
-        products.RemoveAt(removingIndex);
         System.Console.WriteLine($"{products[removingIndex].ProductName} Removed");
+        products.RemoveAt(removingIndex - 1);
     }
 
 }

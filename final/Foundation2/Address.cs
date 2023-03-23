@@ -16,6 +16,11 @@ public class Address
         _country = country;
     }
 
+    public Address()
+    {
+
+    }
+
     public string StreetAddress
     {
         get { return _streetAddress; }
@@ -52,6 +57,6 @@ public class Address
 
     public bool CheckLocation()
     {
-        return (Country == "USA");
+        return (Country.ToUpper() == "USA");
     }
 }

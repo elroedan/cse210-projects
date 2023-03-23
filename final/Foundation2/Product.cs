@@ -40,8 +40,8 @@ public class Product
         return Price * Quantity;
     }
     
-    public void DisplayProduct()
+    public string DisplayProduct()
     {
-        System.Console.WriteLine($"{ProductName} -{Price}$ -{Quantity} QTY");
+        return $"{ProductName} -{Price}$ -{Quantity} QTY";
     }
 }
