@@ -22,7 +22,7 @@ class Program
             System.Console.WriteLine("3. Display Orders");   
             System.Console.WriteLine("4. Quit");   
             System.Console.WriteLine();
-            System.Console.WriteLine("Enter a command: ");
+            System.Console.Write("Enter a command: ");
             choice = int.Parse(Console.ReadLine());
             Console.Clear();
 
@@ -48,6 +48,7 @@ class Program
                             case "1":
             
                                 order.GetProductInfo();
+                                Console.Clear();
                                 break;
                             
                             case "2":
@@ -56,14 +57,18 @@ class Program
 
                             case "3":
                                 order.RemoveProduct();
+
                                 break;
                             
                             case "4":
                                 Console.Clear();
-                                System.Console.WriteLine($"SubTotal: {(order.TotalCost(person.GetCustomerLocation()) / order.Tax) - order.ShippingCost}");
+                                System.Console.WriteLine($"SubTotal: {((order.TotalCost(person.GetCustomerLocation()) / order.Tax) - order.ShippingCost).ToString("F")}");
                                 System.Console.WriteLine($"Shipping Cost: {order.ShippingCost}");  
                                 System.Console.WriteLine($"Tax: {order.Tax}");
-                                System.Console.WriteLine($"Total: {order.TotalCost(person.GetCustomerLocation())} ");  
+                                System.Console.WriteLine($"Total: {order.TotalCost(person.GetCustomerLocation()).ToString("F")} ");  
+                                break;
+                            default:
+                                Console.WriteLine("Invalid command. Please try again.\n");
                                 break;
                         }
                     }
@@ -83,6 +88,13 @@ class Program
                     {
                         customerOrder.ShippingLabel(person);
                     }
+                    break;
+                case 4:
+                    Console.WriteLine("Goodbye!");
+                    return;
+
+                default:
+                    Console.WriteLine("Invalid command. Please try again.\n");
                     break;
             }
 
