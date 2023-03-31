@@ -1,11 +1,13 @@
 using System;
 
-public class Event
+public abstract class Event
 {
-    string _title;
-    string _description;
-    DateTime _date;
-    DateTime _time;
+    private string _title;
+    private string _description;
+    private DateOnly _date;
+    
+    private TimeOnly _time;
+    
 
     public string Title
     {
@@ -19,18 +21,46 @@ public class Event
         set {_description = value; }
     }
 
-    public DateTime Date
+    public DateOnly Date
     {
         get {return _date; }
         set {_date = value; }
     }
-    public DateTime Time
+    public TimeOnly Time
     {
         get {return _time; }
         set {_time = value; }
     }
 
-    public void 
+    Address address = new Address();
+    public void DisplayStandardDetails()
+    {
+        System.Console.WriteLine($"Title: {Title}\nDescription: {Description}");
+        System.Console.WriteLine($"Date and Time: {Date} @ {Time}");
+        System.Console.WriteLine($"Address:");
+        address.DisplayAddress();
+    }
+
+    public virtual void GetEventData()
+    {
+        System.Console.Write("What is the Event title? ");
+        Title = Console.ReadLine();
+        System.Console.Write("Enter Date: ");
+        DateOnly date = DateOnly.Parse(Console.ReadLine());
+        Date = date;
+        System.Console.WriteLine();
+        System.Console.Write("What time is the event? ");
+        TimeOnly time = TimeOnly.Parse(Console.ReadLine());
+        Time = time;
+        System.Console.Write("Write a small description of the event? ");
+        Description = Console.ReadLine();
+
+
+    }
+    public abstract void DisplayShortDescription();
+
+    public abstract void DisplayFullDetail();
+   
 
 
 }
