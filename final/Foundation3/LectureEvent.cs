@@ -41,7 +41,4 @@ public class LectureEvent : Event
         System.Console.WriteLine($"Lecture Event: \nTitle: {Title}\nDate: {Date}");
     }
 
-
-
-    
 }

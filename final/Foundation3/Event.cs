@@ -60,7 +60,5 @@ public abstract class Event
     public abstract void DisplayShortDescription();
 
     public abstract void DisplayFullDetail();
-   
-
 
 }

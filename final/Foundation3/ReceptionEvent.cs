@@ -34,14 +34,6 @@ public class ReceptionEvent : Event
         set {_email = value; }
     }
 
-    /*
-    This code is in case I would like the user to input their email so it can add it to the list
-    // public void AddEmailRecord(string email)
-    // {   
-    //     registration.Add(email);
-    // }
-
-    */
     public override void DisplayFullDetail()
     {
         DisplayStandardDetails();
@@ -65,6 +57,14 @@ public class ReceptionEvent : Event
     {
         System.Console.WriteLine($"Reception Event: \nTitle: {Title}\nDate: {Date}");
     }
-
      
 }
+
+  /*
+    This code is in case I would like the user to input their email so it can add it to the list
+    // public void AddEmailRecord(string email)
+    // {   
+    //     registration.Add(email);
+    // }
+
+    */
