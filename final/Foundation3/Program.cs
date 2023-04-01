@@ -15,7 +15,7 @@ class Program
 
         while (choice != 3)
         {
-            
+            System.Console.WriteLine("Pick your option: ");
             foreach(string action in menu)
             {
                 System.Console.WriteLine($"     {number}. {action}");
@@ -58,6 +58,7 @@ class Program
                             break;
                         
                     }
+                        Console.Clear();
                         System.Console.WriteLine("Event Created");
                     break; 
 
