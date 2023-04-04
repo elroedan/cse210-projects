@@ -16,9 +16,8 @@ public class BikeActivity : Activity
         Speed = double.Parse(Console.ReadLine());
     }
 
-    public override string ExerciseSummary()
-
+    public override string GetSummary()
     {
-        return $"Bike Activity\n{base.ExerciseSummary()} - Speed {Speed} mph";
+        return $"Bike Activity\n{base.GetSummary()} - Speed {Speed} mph";
     }
 }

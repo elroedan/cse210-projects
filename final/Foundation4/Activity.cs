@@ -22,9 +22,9 @@ public abstract class Activity
         Length = double.Parse(Console.ReadLine());
         Date = DateTime.Now;
     }
-    public virtual string ExerciseSummary()
+    public virtual string GetSummary()
     {
-        return $"{Date.ToShortDateString()} Exercise ({Length} min)";
+        return $"{Date.ToShortDateString()} - Exercise ({Length} min)";
     }
 
 

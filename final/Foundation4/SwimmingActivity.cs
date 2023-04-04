@@ -10,13 +10,13 @@ public class SwimmingActivity : Activity
         set {_laps = value; }
     }
 
-    public override string ExerciseSummary()
+    public override string GetSummary()
     {
         double distance = Laps * 50 / 100;
         double speed = (distance / Length) * 60;
         double pace = Length / distance;
 
-        return $"{base.ExerciseSummary()} - Distance {distance} km, Speed: {speed} kph, Pace: {pace} min per kilometer";
+        return $"Swimming Activity\n{base.GetSummary()} - Distance {distance} km, Speed: {speed} kph, Pace: {pace} min per kilometer";
     }
 
     public override void GetActivityData()

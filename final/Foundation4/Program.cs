@@ -9,6 +9,7 @@ class Program
         System.Console.WriteLine("Welcome to the Activity Tracker!");
         while (choice != 3)
         {
+        System.Console.WriteLine();
         System.Console.WriteLine("Select a choice: ");
         System.Console.WriteLine("1. Create an activity");
         System.Console.WriteLine("2. Display Activity");
@@ -60,7 +61,8 @@ class Program
             case 2:
                 foreach(Activity activity in activities)
                 {
-                    System.Console.WriteLine(activity.ExerciseSummary());    
+                    System.Console.WriteLine(activity.GetSummary());    
+                    System.Console.WriteLine();
                 }
 
                 break;
